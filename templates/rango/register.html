@@ -1,0 +1,24 @@
+{% extends 'rango/base.html' %}
+{% block title_block %}Register{% endblock %}
+
+{% block body_block %}
+<h1>Register for Rango</h1>
+
+{% if registered %}
+    <!-- This message must appear on successful POST -->
+    <p>Rango says: <strong>thank you for registering!</strong></p>
+    <p><a href="/rango/">Return to the homepage.</a></p>
+{% else %}
+    <!-- This message must appear on GET or if there's an error -->
+    <p>Rango says: <strong>register here!</strong></p>
+
+    <form method="post" action="{% url 'rango:register' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <input type="submit" name="submit" value="Register" />
+    </form>
+    
+    <p>Already have an account? <a href="{% url 'rango:login' %}">Login here</a>.</p>
+{% endif %}
+{% endblock %}
