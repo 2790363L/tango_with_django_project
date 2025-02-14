@@ -15,21 +15,18 @@ from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 # --------------------------------------------------
 
 def index(request):
-    return HttpResponse("Rango says hey there partner! <br/> <a href='/rango/about/'>About</a>")
-    #category_list = Category.objects.order_by('-likes')[:5]
-    #page_list = Page.objects.order_by('-views')[:5]
+    category_list = Category.objects.order_by('-likes')[:5]
+    page_list = Page.objects.order_by('-views')[:5]
 
-    #context_dict = {}
-    #context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
-    #context_dict['categories'] = category_list
-    #context_dict['pages'] = page_list
+    context_dict = {}
+    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
+    context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
 
-    #visitor_cookie_handler(request)
+    visitor_cookie_handler(request)
 
-    #response = render(request, 'rango/index.html', context=context_dict)
-    #return response
-    return render(request, 'rango/index.html')
-    return HttpResponse("Rango says hey there partner!")
+    response = render(request, 'rango/index.html', context=context_dict)
+    return response
 
 # A helper method
 def get_server_side_cookie(request, cookie, default_val=None):
@@ -40,18 +37,17 @@ def get_server_side_cookie(request, cookie, default_val=None):
 
 
 def about(request):
-    return HttpResponse("Rango says here is the about page. <br/> <a href='/rango/'>Index</a>")
-    #visitor_cookie_handler(request)  # Ensure we update visit count
-    #visits = request.session.get('visits', 1)  # Retrieve the visit count
+    visitor_cookie_handler(request)  # Ensure we update visit count
+    visits = request.session.get('visits', 1)  # Retrieve the visit count
 
-    #context_dict = {
-     #   'MEDIA_URL': settings.MEDIA_URL,
-     #   'developer_name': 'Sam Lynch',
-     #   'visits': visits,  # Pass visit count to the template
-    #}
+    context_dict = {
+        'MEDIA_URL': settings.MEDIA_URL,
+        'developer_name': 'Sam Lynch',
+        'visits': visits,  # Pass visit count to the template
+    }
 
-    #return render(request, 'rango/about.html', context=context_dict)
-    return HttpResponse("Rango says here is the about page.")
+    return render(request, 'rango/about.html', context=context_dict)
+    
 
 def visitor_cookie_handler(request):
     visits = int(get_server_side_cookie(request, 'visits', '1'))
