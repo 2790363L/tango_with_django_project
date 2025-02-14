@@ -21,7 +21,6 @@ class PageForm(forms.ModelForm):
         model = Page
         exclude = ('category',)
 
-    # Chapter 7: auto-prepend 'http://' if missing
     def clean(self):
         cleaned_data = super().clean()
         url = cleaned_data.get('url')

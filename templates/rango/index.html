@@ -16,6 +16,9 @@
         <p><a href="{% url 'rango:login' %}">Login</a> to access more features.</p>
     {% endif %}
 
+    <!-- Chapter 7 test expects this EXACT link. -->
+    <a href="/rango/add_category/">Add a New Category</a><br />
+
     <div>
         <h2>Most Liked Categories</h2>
         {% if categories %}

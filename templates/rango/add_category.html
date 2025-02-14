@@ -1,8 +1,9 @@
 {% extends 'rango/base.html' %}
-{% block title_block %} Add a Category {% endblock %}
+{% block title_block %}Add a Category{% endblock %}
 
 {% block body_block %}
 <h1>Add a Category</h1>
+
 <form id="category_form" method="post" action="{% url 'rango:add_category' %}">
     {% csrf_token %}
     {{ form.as_p }}
