@@ -1,5 +1,5 @@
 {% extends 'rango/base.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block title_block %}About Rango{% endblock %}
 
@@ -12,4 +12,6 @@
     <p>This tutorial has been put together by {{ developer_name }}.</p>
 
     <p>Visits: {{ visits }}</p>
+
+    <a href="/rango/">Index</a><br />  <!-- FIXED LINE -->
 {% endblock %}
